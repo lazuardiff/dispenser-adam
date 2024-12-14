@@ -28,7 +28,9 @@ const int BUZZER_PIN = 4;
 const float OBJECT_DISTANCE_THRESHOLD = 5.0; // Threshold distance for object detection
 const float WATER_LEVEL_THRESHOLD = 8.0;     // Threshold water level for low water warning
 const float HYSTERESIS_MARGIN = 1.0;         // Hysteresis margin for stability
-const int containerHeight = 20;              // Height of the container in cm
+const int containerHeight = 16;              // Height of the container in cm
+
+float measureDistance(int trigPin, int echoPin);
 
 // Initialize I2C LCD (address 0x27, 16 columns x 2 rows)
 LiquidCrystal_I2C lcd(0x27, 16, 2);
