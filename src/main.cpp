@@ -77,23 +77,26 @@ void loop()
   // Measure water level
   distance1 = measureDistance(TRIG_PIN1, ECHO_PIN1);
 
+  // Check for valid reading
   if (distance1 <= 0 || distance1 > containerHeight)
   {
     DEBUG_PRINTLN("Invalid sensor reading, skipping calculation.");
-    digitalWrite(BUZZER_PIN, HIGH); // Matikan buzzer jika pembacaan tidak valid
+    digitalWrite(BUZZER_PIN, HIGH); // If invalid, then buzzer off
   }
   else
   {
-    waterHeight = containerHeight - distance1; // Hitung ketinggian air
+    // Calculate water height
+    waterHeight = containerHeight - distance1;
 
+    // Check if water level is low
     if (waterHeight <= WATER_LEVEL_THRESHOLD)
     {
-      digitalWrite(BUZZER_PIN, LOW); // Nyalakan buzzer
+      digitalWrite(BUZZER_PIN, LOW); // turn on buzzer
       DEBUG_PRINTLN("WATER LEVEL IS LOW, BUZZER ON");
     }
     else
     {
-      digitalWrite(BUZZER_PIN, HIGH); // Matikan buzzer
+      digitalWrite(BUZZER_PIN, HIGH); // turn off buzzer
       DEBUG_PRINTLN("WATER LEVEL IS NORMAL, BUZZER OFF");
     }
   }
